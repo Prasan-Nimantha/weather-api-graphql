@@ -1,4 +1,4 @@
-package com.prasan.wheatherapi;
+package com.prasan.weatherapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
