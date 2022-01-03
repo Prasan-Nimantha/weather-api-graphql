@@ -1,0 +1,32 @@
+schema {
+    query: Query,
+    mutation: Mutation
+}
+
+type Query{
+    # Fetch All Reports
+    getAllReports:[CityWeatherReport]
+    # Fetch Report by id
+    getReportByCityId(cityId:Int!):CityWeatherReport
+}
+
+type Mutation{
+    # Creating a New Weather Report by cityId
+    createNewReport(cityId:Int!):CityWeatherReport
+}
+
+#input CityWeatherReportInput {
+#    id: Int,
+#    description :String,
+#    temperature :Float,
+#    name:String,
+#    prettyDate: String
+#}
+
+type CityWeatherReport {
+    id: Int,
+    description :String,
+    temperature :Float,
+    name:String,
+    prettyDate: String
+}

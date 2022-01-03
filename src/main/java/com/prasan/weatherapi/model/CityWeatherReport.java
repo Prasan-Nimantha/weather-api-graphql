@@ -4,29 +4,35 @@ import java.util.Date;
 import com.prasan.weatherapi.Service.BeanUtil;
 import org.ocpsoft.prettytime.PrettyTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+@Entity
 public class CityWeatherReport {
+
+    @Id @GeneratedValue
+    private Integer id;
+
+    @Transient
+    private Date date;
 
     private String description;
     private double temperature;
-    private Date date;
-    private int id;
+    private int cityId;
     private String name;
+    private String prettyDate;
 
     public CityWeatherReport() {
     }
 
-    public CityWeatherReport(String description, double temperature, Date date) {
-        this.description = description;
-        this.temperature = temperature;
-        this.date = date;
-    }
-
     public int getId() {
-        return id;
+        return cityId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.cityId = id;
     }
 
     public String getName() {
@@ -59,9 +65,14 @@ public class CityWeatherReport {
 
     public void setDate(Date date) {
         this.date = date;
+        this.prettyDate = getPrettyTime();
     }
 
-    public String getPrettyTime() {
+    public String getPrettyDate() {
+        return prettyDate;
+    }
+
+    private String getPrettyTime() {
         PrettyTime pt = BeanUtil.getBean(PrettyTime.class);
         return pt.format(convertToDateViaInstant(getDate()));
     }
