@@ -64,7 +64,7 @@ public class DataLoader implements CommandLineRunner{
 
         for (Integer cityId: cityIdList) {
             CityWeatherReport existingReport = repository.findByCityId(cityId);
-            BeanUtils.copyProperties(service.getReport(cityId), existingReport, "id, date");
+            BeanUtils.copyProperties(service.getReport(cityId), existingReport, "cityId, date");
             repository.save(existingReport);
         }
     }

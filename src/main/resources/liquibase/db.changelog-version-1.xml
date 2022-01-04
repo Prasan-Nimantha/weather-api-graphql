@@ -1,5 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <!-- Initial set -->
     <changeSet author="Prashan (generated)" id="1641270725195-1">
         <createTable tableName="city_weather_report">
             <column name="id" type="INT">
@@ -20,5 +21,10 @@
         <createTable tableName="hibernate_sequence">
             <column name="next_val" type="BIGINT"/>
         </createTable>
+    </changeSet>
+    <!-- first change set -->
+    <changeSet id="1641270725195-3" author="Prashan">
+        <dropColumn tableName="city_weather_report" columnName="id"/>
+        <addPrimaryKey tableName="city_weather_report" columnNames="city_id"/>
     </changeSet>
 </databaseChangeLog>

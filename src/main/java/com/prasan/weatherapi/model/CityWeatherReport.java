@@ -5,34 +5,23 @@ import com.prasan.weatherapi.Service.BeanUtil;
 import org.ocpsoft.prettytime.PrettyTime;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
 @Entity
 public class CityWeatherReport {
-
-    @Id @GeneratedValue
-    private Integer id;
+    @Id
+    private int cityId;
 
     @Transient
     private Date date;
 
     private String description;
     private double temperature;
-    private int cityId;
     private String name;
     private String prettyDate;
 
     public CityWeatherReport() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public int getCityId() {

@@ -16,7 +16,7 @@
 		<java.version>11</java.version>
 		<liquibase.propertyFile>src/main/resources/liquibase/liquibase.properties</liquibase.propertyFile>
 		<!-- Liquibase core and liquibase maven plugin version -->
-		<liquibase.version>4.2.2</liquibase.version>
+		<liquibase.version>4.3.1</liquibase.version>
 	</properties>
 	<dependencies>
 		<dependency>
