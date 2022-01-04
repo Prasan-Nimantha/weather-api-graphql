@@ -4,10 +4,10 @@ import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.prasan.weatherapi.Service.WeatherInfoService;
 import com.prasan.weatherapi.model.CityWeatherReport;
 import com.prasan.weatherapi.repository.CityWeatherReportRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
 import java.util.Date;
 
 @Component
@@ -20,6 +20,19 @@ public class CityWeatherReportMutationResolver implements GraphQLMutationResolve
     public CityWeatherReportMutationResolver(CityWeatherReportRepository repository, WeatherInfoService service) {
         this.repository = repository;
         this.service = service;
+    }
+
+    public CityWeatherReport updateReportById(int cityId) {
+        CityWeatherReport existingReport = repository.findByCityId(cityId);
+        BeanUtils.copyProperties(service.getReport(cityId), existingReport, "cityId, date");
+        return repository.save(existingReport);
+    }
+
+    public CityWeatherReport updateReport(CityWeatherReport report) {
+        CityWeatherReport existingReport = repository.findByCityId(report.getCityId());
+        report.setDate(new Date());
+        BeanUtils.copyProperties(report, existingReport, "cityId, date");
+        return repository.save(report);
     }
 
     public CityWeatherReport createNewReportById(int cityId) {

@@ -14,10 +14,12 @@ type Mutation{
     # Creating a New Weather Report by cityId
     createNewReportById(cityId:Int!):CityWeatherReport
     createNewReport(input:CityWeatherReportInput!):CityWeatherReport
+    updateReportById(cityId:Int!):CityWeatherReport
+    updateReport(input:CityWeatherReportInput!):CityWeatherReport
 }
 
 input CityWeatherReportInput {
-    id: Int,
+    cityId: Int,
     description :String,
     temperature :Float,
     name:String
