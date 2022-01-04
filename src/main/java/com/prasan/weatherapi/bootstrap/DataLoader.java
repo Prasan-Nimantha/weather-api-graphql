@@ -15,6 +15,7 @@ import com.prasan.weatherapi.model.CityWeatherReport;
 import com.prasan.weatherapi.repository.CityWeatherReportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -33,17 +34,17 @@ public class DataLoader implements CommandLineRunner{
         this.service = service;
     }
 
-    private List<Long> getCityIdList() {
+    private List<Integer> getCityIdList() {
 
         ObjectMapper mapper = new ObjectMapper();
-        List<Long> ids = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
         Cities list;
 
         try {
             list = mapper.readValue(new File("./src/main/resources/json-files/cities.json"), Cities.class);
 
             for (City city : list.getList()) {
-                ids.add((long) city.getCityCode());
+                ids.add(city.getCityCode());
             }
 
             logger.info(ids.toString());
@@ -59,10 +60,12 @@ public class DataLoader implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        List<CityWeatherReport> list = service.getReports(getCityIdList());
+        List<Integer> cityIdList = getCityIdList();
 
-        for (CityWeatherReport report : list) {
-            repository.save(report);
+        for (Integer cityId: cityIdList) {
+            CityWeatherReport existingReport = repository.findByCityId(cityId);
+            BeanUtils.copyProperties(service.getReport(cityId), existingReport, "id, date");
+            repository.save(existingReport);
         }
     }
 }

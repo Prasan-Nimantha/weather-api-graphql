@@ -27,12 +27,20 @@ public class CityWeatherReport {
     public CityWeatherReport() {
     }
 
-    public int getId() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public int getCityId() {
         return cityId;
     }
 
-    public void setId(int id) {
-        this.cityId = id;
+    public void setCityId(int id) {
+        this.cityId = cityId;
     }
 
     public String getName() {

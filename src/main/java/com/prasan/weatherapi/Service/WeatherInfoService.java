@@ -30,7 +30,7 @@ public class WeatherInfoService {
     }
 
     @Cacheable(value = "reportById")
-    public CityWeatherReport getReport(long cityId) {
+    public CityWeatherReport getReport(int cityId) {
         String url = String.format("%s?id=%d&appid=%s", BASE, cityId, KEY);
         Result result = restTemplate.getForObject(url, Result.class);
 
@@ -40,19 +40,19 @@ public class WeatherInfoService {
             report.setDescription(result.getWeather().get(0).getDescription());
             report.setTemperature(result.getMain().getTemp());
             report.setDate(result.getDate());
-            report.setId(result.getId());
+            report.setCityId(result.getId());
             report.setName(result.getName());
         }
         return report;
     }
 
     @Cacheable(value = "report")
-    public List<CityWeatherReport> getReports(List<Long> ids) {
+    public List<CityWeatherReport> getReports(List<Integer> ids) {
 
         logger.info("called");
         List<CityWeatherReport> output = new ArrayList<>();
 
-        for (Long id : ids) {
+        for (Integer id : ids) {
             CityWeatherReport report = getReport(id);
             output.add(report);
         }
