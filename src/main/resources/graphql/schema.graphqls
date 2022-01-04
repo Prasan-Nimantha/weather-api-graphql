@@ -25,7 +25,7 @@ input CityWeatherReportInput {
 }
 
 type CityWeatherReport {
-    id: Int,
+    cityId: Int,
     description :String,
     temperature :Float,
     name:String,

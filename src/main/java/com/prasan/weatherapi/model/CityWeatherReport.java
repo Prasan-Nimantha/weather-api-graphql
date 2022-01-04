@@ -28,7 +28,7 @@ public class CityWeatherReport {
         return cityId;
     }
 
-    public void setCityId(int id) {
+    public void setCityId(int cityId) {
         this.cityId = cityId;
     }
 
