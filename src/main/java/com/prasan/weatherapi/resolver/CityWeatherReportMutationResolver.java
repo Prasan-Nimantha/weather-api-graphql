@@ -43,4 +43,13 @@ public class CityWeatherReportMutationResolver implements GraphQLMutationResolve
         report.setDate(new Date());
         return repository.save(report);
     }
+
+    public String deleteReportById(int cityId) {
+        repository.deleteById(cityId);
+
+        if (repository.findByCityId(cityId) != null) {
+            return "Operation failed";
+        }
+        return "Operation was Successful";
+    }
 }

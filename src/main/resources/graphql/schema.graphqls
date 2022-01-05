@@ -13,23 +13,27 @@ type Query{
 type Mutation{
     # Creating a New Weather Report by cityId
     createNewReportById(cityId:Int!):CityWeatherReport
-    createNewReport(input:CityWeatherReportInput!):CityWeatherReport
+    # Create a New Weather Report
+    createNewReport(input:CityWeatherReportInput):CityWeatherReport
+    # Updating a Weather Report by cityId
     updateReportById(cityId:Int!):CityWeatherReport
-    updateReport(input:CityWeatherReportInput!):CityWeatherReport
+    # Updating a Weather Report
+    updateReport(input:CityWeatherReportInput):CityWeatherReport
+    # Deleting a Weather Report by cityId
+    deleteReportById(cityId:Int!):String
 }
 
 input CityWeatherReportInput {
-    cityId: Int,
-    description :String,
-    temperature :Float,
+    cityId:Int!,
+    description:String,
+    temperature:Float,
     name:String
-    #date: String
 }
 
 type CityWeatherReport {
-    cityId: Int,
-    description :String,
-    temperature :Float,
+    cityId:Int,
+    description:String,
+    temperature:Float,
     name:String,
-    prettyDate: String
+    prettyDate:String
 }
