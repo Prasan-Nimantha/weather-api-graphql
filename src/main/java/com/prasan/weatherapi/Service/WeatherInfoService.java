@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,7 +28,6 @@ public class WeatherInfoService {
         this.restTemplate = builder.build();
     }
 
-    @Cacheable(value = "reportById")
     public CityWeatherReport getReport(int cityId) {
         String url = String.format("%s?id=%d&appid=%s", BASE, cityId, KEY);
         Result result = restTemplate.getForObject(url, Result.class);
@@ -46,7 +44,6 @@ public class WeatherInfoService {
         return report;
     }
 
-    @Cacheable(value = "report")
     public List<CityWeatherReport> getReports(List<Integer> ids) {
 
         logger.info("called");

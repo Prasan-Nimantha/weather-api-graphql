@@ -13,6 +13,8 @@ type Query{
 type Mutation{
     # Creating a New Weather Report by cityId
     createNewReportById(cityId:Int!):CityWeatherReport
+    # Creating a New Weather Report by cityId
+    createNewReportsByIds(cityIds:[Int]!):[CityWeatherReport]
     # Create a New Weather Report
     createNewReport(input:CityWeatherReportInput):CityWeatherReport
     # Updating a Weather Report by cityId

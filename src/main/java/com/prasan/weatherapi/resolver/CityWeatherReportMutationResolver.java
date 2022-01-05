@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class CityWeatherReportMutationResolver implements GraphQLMutationResolver {
@@ -37,6 +38,11 @@ public class CityWeatherReportMutationResolver implements GraphQLMutationResolve
 
     public CityWeatherReport createNewReportById(int cityId) {
         return repository.save(service.getReport(cityId));
+    }
+
+    public List<CityWeatherReport> createNewReportsByIds(List<Integer> cityIds) {
+        List<CityWeatherReport> reportList = service.getReports(cityIds);
+        return repository.saveAll(reportList);
     }
 
     public CityWeatherReport createNewReport(CityWeatherReport report) {
