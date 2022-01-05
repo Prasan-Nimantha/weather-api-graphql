@@ -103,4 +103,11 @@ This also has a caching mechanism bilt-in for subsequent requests that are askin
   }
   
   ```
+ 
+## Technologies used
+
+* Spring Boot
+* Spring GraphQL
+* MySQL
+* caffeine for caching
   
