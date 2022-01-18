@@ -23,15 +23,15 @@ import static org.mockito.Mockito.when;
 @ContextConfiguration(classes = {BeanUtil.class, PrettyTime.class})
 class CityWeatherReportQueryResolverTest {
 
-    CityWeatherReport report;
-    CityWeatherReport report2;
-    CityWeatherReport report3;
+    private CityWeatherReport report;
+    private CityWeatherReport report2;
+    private CityWeatherReport report3;
 
-    List<CityWeatherReport> reportList;
+    private List<CityWeatherReport> reportList;
 
     @Mock
-    CityWeatherReportRepository repository;
-    CityWeatherReportQueryResolver resolver;
+    private CityWeatherReportRepository repository;
+    private CityWeatherReportQueryResolver resolver;
 
     @BeforeEach
     public void setReports() {

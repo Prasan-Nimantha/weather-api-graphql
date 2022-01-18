@@ -32,16 +32,13 @@ public class CityWeatherReport {
         this.cityId = cityId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Date getDate() {
         return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+        this.prettyDate = getPrettyTime();
     }
 
     public String getDescription() {
@@ -60,14 +57,23 @@ public class CityWeatherReport {
         this.temperature = temperature;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-        this.prettyDate = getPrettyTime();
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public String getPrettyDate() {
         return prettyDate;
     }
+
+    public void setPrettyDate(String prettyDate) {
+        this.prettyDate = prettyDate;
+    }
+
 
     private String getPrettyTime() {
         PrettyTime pt = BeanUtil.getBean(PrettyTime.class);

@@ -33,7 +33,7 @@ public class CityWeatherReportMutationResolver implements GraphQLMutationResolve
         CityWeatherReport existingReport = repository.findByCityId(report.getCityId());
         report.setDate(new Date());
         BeanUtils.copyProperties(report, existingReport, "cityId, date");
-        return repository.save(report);
+        return repository.save(existingReport);
     }
 
     public CityWeatherReport createNewReportById(int cityId) {
