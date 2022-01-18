@@ -41,7 +41,7 @@ public class DataLoader implements CommandLineRunner{
         Cities list;
 
         try {
-            list = mapper.readValue(new File("./src/main/resources/json-files/cities-test.json"), Cities.class);
+            list = mapper.readValue(new File("./src/main/resources/json-files/cities.json"), Cities.class);
 
             for (City city : list.getList()) {
                 ids.add(city.getCityCode());

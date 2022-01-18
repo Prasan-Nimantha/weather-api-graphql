@@ -2,6 +2,9 @@ package com.prasan.weatherapi.model;
 
 import java.util.Date;
 import com.prasan.weatherapi.Service.BeanUtil;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.ocpsoft.prettytime.PrettyTime;
 
 import javax.persistence.Entity;
@@ -9,71 +12,30 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 @Entity
+@NoArgsConstructor
 public class CityWeatherReport {
-    @Id
+    @Id @Getter @Setter
     private int cityId;
 
-    @Transient
+    @Transient @Getter
     private Date date;
 
+    @Getter @Setter
     private String description;
+
+    @Getter @Setter
     private double temperature;
+
+    @Getter @Setter
     private String name;
+
+    @Getter @Setter
     private String prettyDate;
-
-    public CityWeatherReport() {
-    }
-
-    public int getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
 
     public void setDate(Date date) {
         this.date = date;
         this.prettyDate = getPrettyTime();
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public String getPrettyDate() {
-        return prettyDate;
-    }
-
-    public void setPrettyDate(String prettyDate) {
-        this.prettyDate = prettyDate;
-    }
-
 
     private String getPrettyTime() {
         PrettyTime pt = BeanUtil.getBean(PrettyTime.class);
