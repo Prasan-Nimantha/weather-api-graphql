@@ -2,7 +2,7 @@
 This is an application built with spring boot and related technologies to access openweathermap.org's 
 RESTful APIs. After running the application you can call the "/graphql" end point from any graphql client, 
 which will enable you to call the api using graphql queries and have the full CRUD functionality. 
-This also has a caching mechanism bilt-in for subsequent requests that are asking for same data.
+This also has a caching mechanism built-in for subsequent requests that are asking for same data.
 
 ## Here are some sample queries
 
