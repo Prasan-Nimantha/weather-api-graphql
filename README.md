@@ -35,15 +35,15 @@ This also has a caching mechanism bilt-in for subsequent requests that are askin
   ```
 * Query to create a new record by city id
   ```
-  mutation createNewReport($input:CityWeatherReportInput){   
-      createNewReport(input:$input){
+  mutation createNewReportById(cityId:1850147){   
+      createNewReportById(cityId:1850147){
           name,
           description
       }
   }
   
   ```
-* Query to create list new records by city ids
+* Query to create list of new records by city ids
   ```
   mutation createNewReportsByIds{   
       createNewReportsByIds(cityIds:[524901,703448]){
@@ -55,8 +55,8 @@ This also has a caching mechanism bilt-in for subsequent requests that are askin
   ```
 * Query to create a new record
   ```
-  mutation updateReport($input:CityWeatherReportInput){   
-      updateReport(input:$input){
+  mutation createNewReport($input:CityWeatherReportInput){   
+      createNewReport(input:$input){
           name,
           description
       }
