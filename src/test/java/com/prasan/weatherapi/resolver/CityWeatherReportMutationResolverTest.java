@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({SpringExtension.class})
 @ContextConfiguration(classes = {BeanUtil.class, PrettyTime.class})
@@ -77,6 +77,10 @@ class CityWeatherReportMutationResolverTest {
         CityWeatherReport weatherReport = resolver.updateReportById(1232);
 
         assertNotEquals(weatherReport.getDescription(), "cloudy");
+
+        verify(service, times(1)).getReport(1232);
+        verify(repository, times(1)).findByCityId(1232);
+        verify(repository, times(1)).save(report);
     }
 
     @Test
@@ -94,6 +98,9 @@ class CityWeatherReportMutationResolverTest {
         CityWeatherReport weatherReport = resolver.updateReport(reportUpdated);
 
         assertNotEquals(weatherReport.getDescription(), "cloudy");
+
+        verify(repository, times(1)).findByCityId(reportUpdated.getCityId());
+        verify(repository, times(1)).save(report);
     }
 
     @Test
@@ -104,6 +111,9 @@ class CityWeatherReportMutationResolverTest {
         CityWeatherReport weatherReport = resolver.createNewReportById(1232);
 
         assertEquals(weatherReport.getName(), report.getName());
+
+        verify(service, times(1)).getReport(1232);
+        verify(repository, times(1)).save(report);
     }
 
     @Test
@@ -118,6 +128,9 @@ class CityWeatherReportMutationResolverTest {
         List<CityWeatherReport> weatherReports = resolver.createNewReportsByIds(list);
 
         assertEquals(weatherReports.size(), 2);
+
+        verify(service, times(1)).getReports(list);
+        verify(repository, times(1)).saveAll(reportList);
     }
 
     @Test
@@ -127,6 +140,8 @@ class CityWeatherReportMutationResolverTest {
         CityWeatherReport weatherReport = resolver.createNewReport(report);
 
         assertEquals(weatherReport.getName(), report.getName());
+
+        verify(repository, times(1)).save(report);
     }
 
     @Test
@@ -140,5 +155,7 @@ class CityWeatherReportMutationResolverTest {
 
         String msg2 = resolver.deleteReportById(1232);
         assertEquals(msg2, "Operation failed");
+
+        verify(repository, times(2)).findByCityId(1232);
     }
 }
