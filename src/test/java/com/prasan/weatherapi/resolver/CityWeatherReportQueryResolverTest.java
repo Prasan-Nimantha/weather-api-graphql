@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {BeanUtil.class, PrettyTime.class})
@@ -71,6 +71,7 @@ class CityWeatherReportQueryResolverTest {
 
         List<CityWeatherReport> reports = resolver.getAllReports();
         assertEquals(reports.size(), 3);
+        verify(repository, times(1)).findAll();
     }
 
     @Test
@@ -79,5 +80,6 @@ class CityWeatherReportQueryResolverTest {
 
         CityWeatherReport weatherReport = resolver.getReportByCityId(1232);
         assertEquals(weatherReport.getName(), report.getName());
+        verify(repository, times(1)).findByCityId(1232);
     }
 }
