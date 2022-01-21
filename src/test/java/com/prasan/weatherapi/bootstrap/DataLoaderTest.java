@@ -16,8 +16,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Date;
 
-import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {ObjectMapper.class, BeanUtil.class, PrettyTime.class})
@@ -95,5 +95,14 @@ class DataLoaderTest {
         assertEquals(existingReport.getDescription(), report.getDescription());
         assertEquals("no clouds", report3.getDescription());
 
+        verify(repository, times(1)).findByCityId(1248991);
+        verify(repository, times(1)).findByCityId(1850147);
+        verify(repository, times(1)).findByCityId(2644210);
+        verify(service, times(1)).getReport(1248991);
+        verify(service, times(1)).getReport(1850147);
+        verify(service, times(1)).getReport(2644210);
+        verify(repository, times(1)).save(existingReport);
+        verify(repository, times(1)).save(existingReport2);
+        verify(repository, times(1)).save(report3);
     }
 }
